@@ -12,25 +12,45 @@
     <div id="root">wait...</div>
 
     <script type="text/babel">
-        let dom = document.querySelector('#root');
+        let dom =document.querySelector('#root');
 
-        let message = "新しいメッセージです。";
-
-        const msg_s = {
-            fontSize:"20pt",
-            color:"red",
-            border:"1px solid blue"
+        const p = {
+            fontSize: "20pt",
+            padding: "10px",
         };
 
-        let link = "http://google.com";
+        const input = {
+            fontSize: "16pt",
+            padding: "5px 10px",
+        };
 
-        let el = (
-            <div>
-                <p style={msg_s}>{message}</p>
-            </div>
-        );
+        let message = 'お名前をどうぞ：';
+        let in_val = '';
 
-        ReactDOM.render(el, dom);
+        let doChange = (event) => {
+            in_val = event.target.value;
+            message = 'こんにちは, ' + in_val + 'さん!!';
+        }
+
+        let doAction = (event) => {
+            let el = (
+                <div>
+                    <p style={p}>
+                        {message}
+                    </p>
+
+                    <div>
+                        <input type="text" id="input" style={input} onChange={doChange} />
+                        <button onClick={doAction} style={input}>
+                            Click
+                        </button>
+                    </div>
+                </div>
+            )
+            ReactDOM.render(el, dom);
+        };
+
+        doAction();
     </script>
 </body>
 </html>
